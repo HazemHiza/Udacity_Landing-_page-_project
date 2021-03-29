@@ -1,0 +1,275 @@
+/*
+ *
+ * CSS written based on SMACSS architecture.
+ * To learn more, visit: http://smacss.com/
+ * 
+ * For simplicity, no reset or normalize is added. 
+ * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
+ *
+*/
+
+
+/* ---- Base Rules ---- */
+
+/*Make all the animation or transitions of the page smooth.*/
+html { scroll-behavior: smooth;
+}
+ /*Styling the main body(page background)*/
+body {
+    background: rgba(22, 102, 194, 0.609);
+    background: linear-gradient(0deg, rgba(95, 17, 109, 0.876) 0%, #010757f1 100%);
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    color: #fff;
+}
+
+/* Typeography General*/
+h1 {
+    padding-top: 20px;
+    text-shadow: 5px 5px 10px rgb(0, 0, 0);
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 3em;
+    margin: 2em 1rem;
+}
+
+@media only screen and (min-width: 35em){
+    h1 {
+        font-size: 7em;
+        margin: 2em 4rem 1em;
+    }
+}
+/* Styling The headers or the buttons of my collapsed sections*/ 
+.accord__btn {
+    display: block;
+    width: 65% ;
+    padding: 15px;
+    border-radius: 30px;
+    outline: none;
+    cursor:pointer;
+    color:#e4e4e4;
+    font-size: 27px; font-weight:bolder;
+    text-align:center;
+    background: #1f9fb6c2;
+    transition: 0.2s;
+    border: 7px groove rgb(1, 2, 1);
+    margin-inline-end: auto;
+   }
+ /* creating & styling the side active arrow beside the header*/
+.accord__btn::after{
+    content: '\25be';
+    float: right;
+    transform:scale(1.5);
+}  
+.accord__btn--active {background: 555555;}
+.accord__btn--active::after {
+    content:'\25b4'}
+.accord__content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.2s;
+    padding: 0  15px;
+    font-family: sans-serif;
+    
+}
+
+
+p {
+    line-height: 2.6em;
+    color: #eee;
+}
+
+/* ---- Layout Rules ---- */
+main {
+    margin: 10vh 1em 10vh;
+}
+
+.main-hero {
+    min-height: 40vh;
+    padding-top: 3em;
+}
+
+section {
+    position: relative;
+    min-height: 110vh;
+}
+
+
+/* ---- Module Rules ---- */
+/* Header Styles */
+.page__header {
+    background-color: rgba(241, 34, 224, 0.883);
+    top: 0;
+    width: 100%;
+    display: block;
+    position: fixed;
+    z-index: 5;
+}
+/* Navigation Styles*/
+.navbar__menu ul {
+    padding-left: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.navbar__menu li {
+    display: inline-flex;
+}
+
+.navbar__menu .menu__link {
+    display: block;
+    padding: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(14, 13, 13);
+    text-shadow: yellow;
+}
+
+.navbar__menu .menu__link:hover {
+    background: rgb(107, 16, 103);
+    color: rgb(227, 238, 77);
+    transition: ease 0.3s all;
+}
+
+/* Footer Styles */
+.page__footer {
+    background: #000;
+    padding: 3em;
+    color: #fff;
+}
+
+.page__footer 
+p{ color: #fff;
+}
+
+
+/* ---- Theme Rules ---- */
+/* Landing Container Styles */
+.accord__content {
+    padding: 1em;
+    text-align: left;
+    height:500px;
+}
+
+@media only screen and (min-width: 35em){
+    .accord__content {
+        max-width: 50em;
+        padding: 1em;
+    }
+}
+
+section:nth-of-type(even) .accord__content {
+    margin-right: 0;
+    margin-left: auto;
+    text-align: right; 
+}
+
+/* Background Circles */
+/* Note that background circles are created with psuedo elements before and after */
+/* Circles appear to be random do to use of :nth-of-type psuedo class */
+section:nth-of-type(odd) .accord__content::before {
+    content: '';
+    background: rgba(178, 62, 207, 0.678);
+    position: absolute;
+    z-index: -5;
+    width: 20vh;
+    height: 20vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(even) .accord__content::before {
+    content: '';
+    background: rgba(223, 93, 93, 0.87);
+    background: linear-gradient(0deg, rgba(184, 68, 68, 0.452) 0%, rgba(90, 192, 72, 0.541) 100%);
+    position: absolute;
+    top: 3em;
+    right: 3em;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n) .accord__content::after {
+    content: '';
+    background: rgb(182, 206, 44);
+    background: linear-gradient(0deg, rgba(17, 116, 63, 0.376) 0%, rgba(121, 195, 35, 0.815) 100%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+section:nth-of-type(3n + 1) .accord__content::after {
+    content: '';
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(185, 43, 43, 0.1) 0%, rgba(255,255,255,.2) 100%);
+    position: absolute;
+    right: 20vw;
+    bottom: -5em;
+    z-index: -5;
+    width: 15vh;
+    height: 15vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+/* Styling the (Go To The Top of The page) button.*/
+.goTop{display: none;
+    position: fixed;
+    bottom:75px;right: 40px;
+    border-radius: 20px;
+    height: 50px;
+    font-weight: bold;
+    opacity: 0.7;
+    background: #4edb0dd7
+    border = none;
+    color: rgb(6, 8, 8);
+    box-shadow: 5px 5px 15px rgb(221, 150, 19);
+    transition: all 0.5s;}
+
+.goTop:hover { background: #a86ddf;
+    color: rgb(185, 241, 94);
+    cursor: pointer;
+}
+
+/* ---- Theme State Rules ---- */
+/* Section Active Styles */
+/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
+section.your-active-class {
+    background: rgba(25, 3, 31, 0.287) 100%;
+    background: linear-gradient(1deg, rgba(218, 209, 94, 0.726) 100%, rrgba(7, 3, 0, 0.335)100%);
+}
+
+section.your-active-class .accord__content::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+section.your-active-class .accord__content::after {
+    opacity: 0.7;
+    animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+/* Section Active Styles Keyframe Animations */
+@keyframes rotate {
+	from {
+		transform: rotate(0deg)
+		           translate(-1em)
+		           rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg)
+		           translate(-1em) 
+		           rotate(-360deg);
+	}
+}
